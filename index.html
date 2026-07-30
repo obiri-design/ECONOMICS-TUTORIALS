@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AB DiGITALS - ECON 102 IA Masterclass & Prep</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-hover: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #334155;
+            --text-heading: #0f172a;
+            --border: #e2e8f0;
+            --correct: #16a34a;
+            --incorrect: #dc2626;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Access Modal / Gate */
+        #access-gate {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 450px;
+            margin: 4rem auto;
+            border: 1px solid var(--border);
+        }
+
+        #access-gate h2 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Main Content Dashboard */
+        #main-content {
+            display: none;
+        }
+
+        .welcome-banner {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-card h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Video Embed Aspect Ratio Box */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Formula Cheat Sheet */
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .formula-box {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-left: 4px solid var(--accent);
+            border-radius: 4px;
+        }
+
+        .formula-box h3 {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+            color: var(--text-heading);
+        }
+
+        .formula-box code {
+            font-family: 'Courier New', Courier, monospace;
+            background: #e2e8f0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 0.2rem;
+        }
+
+        /* MCQ Section */
+        .mcq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-heading);
+        }
+
+        .mcq-options {
+            list-style: none;
+        }
+
+        .mcq-options li {
+            margin-bottom: 0.5rem;
+        }
+
+        .mcq-options label {
+            display: block;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .mcq-options label:hover {
+            background: #f1f5f9;
+        }
+
+        .answer-explanation {
+            display: none;
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .answer-explanation.correct {
+            background: #dcfce7;
+            color: #14532d;
+            border: 1px solid #86efac;
+        }
+
+        .answer-explanation.incorrect {
+            background: #fee2e2;
+            color: #7f1d1d;
+            border: 1px solid #fca5a5;
+        }
+
+        footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AB DiGITALS</h1>
+        <p>ECON 102: Elements of Macroeconomics — IA Master Class Prep</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Student Name Login Gate -->
+        <div id="access-gate">
+            <h2>Student Portal</h2>
+            <p style="margin-bottom: 1.5rem; color: #64748b;">Enter your full name to access the crash course and practice test.</p>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="student-name">Full Name:</label>
+                    <input type="text" id="student-name" placeholder="e.g. Doris Addo" required>
+                </div>
+                <button type="submit" class="btn">Access Revision Materials</button>
+            </form>
+        </div>
+
+        <!-- Main Dashboard (Initially Hidden) -->
+        <div id="main-content">
+            
+            <div class="welcome-banner">
+                Welcome, <span id="display-name"></span>! Study the formulas below, watch the crash video, and test yourself on the UG-style MCQs.
+            </div>
+
+            <!-- Video Section -->
+            <div class="section-card">
+                <h2>1. Macroeconomics 20-Minute IA Review</h2>
+                <p style="margin-bottom: 1rem; color: #64748b;">Comprehensive walk-through: Macro Goals, Inflation/CPI, Unemployment calculations, and National Income Accounting breakdown.</p>
+                
+                <div class="video-container">
+                    <!-- Standard Macroeconomics Crash Course Embed (Replace Video ID if using a custom upload) -->
+                    <iframe src="https://www.youtube.com/embed/d8uTB5XorBw" title="ECON 102 IA Macroeconomics Revision" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Formula Cheat Sheet Section -->
+            <div class="section-card">
+                <h2>2. Essential National Income & Macro Formulas</h2>
+                <div class="formula-grid">
+                    <div class="formula-box">
+                        <h3>Expenditure Approach (GDP)</h3>
+                        <code>GDP = C + I + G + (X - M)</code>
+                    </div>
+                    <div class="formula-box">
+                        <h3>Gross National Product (GNP)</h3>
+                        <code>GNP = GDP + Net Factor Income from Abroad (NFIA)</code>
+                    </div>
+                    <div class="formula-box">
+                        <h3>Net Domestic Product (NDP)</h3>
+                        <code>NDP = GDP - Depreciation (CCA)</code>
+                    </div>
+                    <div class="formula-box">
+                        <h3>GDP Deflator</h3>
+                        <code>GDP Deflator = (Nominal GDP / Real GDP) × 100</code>
+                    </div>
+                    <div class="formula-box">
+                        <h3>Consumer Price Index (CPI)</h3>
+                        <code>CPI = (Cost of Basket Current / Cost of Basket Base) × 100</code>
+                    </div>
+                    <div class="formula-box">
+                        <h3>Inflation Rate</h3>
+                        <code>Rate = [(CPI_t - CPI_t-1) / CPI_t-1] × 100</code>
+                    </div>
+                    <div class="formula-box">
+                        <h3>Unemployment Rate</h3>
+                        <code>Rate = (Unemployed / Labor Force) × 100</code>
+                    </div>
+                    <div class="formula-box">
+                        <h3>Labor Force Participation Rate</h3>
+                        <code>Rate = (Labor Force / Adult Population) × 100</code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice MCQs Section -->
+            <div class="section-card">
+                <h2>3. UG ECON 102 Practice MCQs</h2>
+                <p style="margin-bottom: 1.5rem; color: #64748b;">Select your answers to reveal immediate solutions and step-by-step logic.</p>
+
+                <!-- Question 1 -->
+                <div class="mcq-item" id="q1">
+                    <p class="mcq-question">1. Which of the following is NOT a primary macroeconomic policy goal?</p>
+                    <ul class="mcq-options">
+                        <li><label><input type="radio" name="q1" value="A"> A) Achieving high and sustained economic growth</label></li>
+                        <li><label><input type="radio" name="q1" value="B"> B) Maintaining absolute equality of individual incomes</label></li>
+                        <li><label><input type="radio" name="q1" value="C"> C) Achieving price stability (low inflation)</label></li>
+                        <li><label><input type="radio" name="q1" value="D"> D) Maintaining low unemployment / full employment</label></li>
+                    </ul>
+                    <div class="answer-explanation"></div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="mcq-item" id="q2">
+                    <p class="mcq-question">2. If Nominal GDP for a country is $600 billion and Real GDP is $500 billion, what is the value of the GDP Deflator?</p>
+                    <ul class="mcq-options">
+                        <li><label><input type="radio" name="q2" value="A"> A) 83.33</label></li>
+                        <li><label><input type="radio" name="q2" value="B"> B) 120.00</label></li>
+                        <li><label><input type="radio" name="q2" value="C"> C) 110.00</label></li>
+                        <li><label><input type="radio" name="q2" value="D"> D) 50.00</label></li>
+                    </ul>
+                    <div class="answer-explanation"></div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="mcq-item" id="q3">
+                    <p class="mcq-question">3. Kwesi lost his job at a manufacturing plant due to a broad economic recession. What type of unemployment is he experiencing?</p>
+                    <ul class="mcq-options">
+                        <li><label><input type="radio" name="q3" value="A"> A) Frictional Unemployment</label></li>
+                        <li><label><input type="radio" name="q3" value="B"> B) Structural Unemployment</label></li>
+                        <li><label><input type="radio" name="q3" value="C"> C) Cyclical Unemployment</label></li>
+                        <li><label><input type="radio" name="q3" value="D"> D) Seasonal Unemployment</label></li>
+                    </ul>
+                    <div class="answer-explanation"></div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="mcq-item" id="q4">
+                    <p class="mcq-question">4. To calculate Net National Product (NNP) at market prices from Gross National Product (GNP) at market prices, one must subtract:</p>
+                    <ul class="mcq-options">
+                        <li><label><input type="radio" name="q4" value="A"> A) Net Indirect Taxes</label></li>
+                        <li><label><input type="radio" name="q4" value="B"> B) Subsidies</label></li>
+                        <li><label><input type="radio" name="q4" value="C"> C) Depreciation (Capital Consumption Allowance)</label></li>
+                        <li><label><input type="radio" name="q4" value="D"> D) Net Factor Income from Abroad</label></li>
+                    </ul>
+                    <div class="answer-explanation"></div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="mcq-item" id="q5">
+                    <p class="mcq-question">5. If the CPI in 2024 was 150 and the CPI in 2025 was 165, what was the annual inflation rate between these two years?</p>
+                    <ul class="mcq-options">
+                        <li><label><input type="radio" name="q5" value="A"> A) 10.0%</label></li>
+                        <li><label><input type="radio" name="q5" value="B"> B) 15.0%</label></li>
+                        <li><label><input type="radio" name="q5" value="C"> C) 9.09%</label></li>
+                        <li><label><input type="radio" name="q5" value="D"> D) 6.67%</label></li>
+                    </ul>
+                    <div class="answer-explanation"></div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="mcq-item" id="q6">
+                    <p class="mcq-question">6. A country has an adult population of 20 million. 12 million are employed, and 1 million are actively looking for work. What is the Labor Force Participation Rate?</p>
+                    <ul class="mcq-options">
+                        <li><label><input type="radio" name="q6" value="A"> A) 60%</label></li>
+                        <li><label><input type="radio" name="q6" value="B"> B) 65%</label></li>
+                        <li><label><input type="radio" name="q6" value="C"> C) 7.69%</label></li>
+                        <li><label><input type="radio" name="q6" value="D"> D) 55%</label></li>
+                    </ul>
+                    <div class="answer-explanation"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 AB DiGITALS — Academic Support & Digital Media. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Form & Login handling
+        const loginForm = document.getElementById('login-form');
+        const accessGate = document.getElementById('access-gate');
+        const mainContent = document.getElementById('main-content');
+        const displayName = document.getElementById('display-name');
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('student-name').value.trim();
+            if(nameInput !== "") {
+                displayName.textContent = nameInput;
+                accessGate.style.display = 'none';
+                mainContent.style.display = 'block';
+            }
+        });
+
+        // MCQ Answer key & Explanation Database
+        const mcqData = {
+            q1: {
+                correct: 'B',
+                explanation: "Correct! Option B is an equity target rather than a primary macroeconomic policy goal. The core macro goals include sustained economic growth, price stability, full employment, and balance of payments equilibrium."
+            },
+            q2: {
+                correct: 'B',
+                explanation: "Correct! Formula: GDP Deflator = (Nominal GDP / Real GDP) × 100. Calculation: (600 / 500) × 100 = 1.2 × 100 = 120."
+            },
+            q3: {
+                correct: 'C',
+                explanation: "Correct! Cyclical unemployment is directly caused by downturns in the aggregate business cycle (recessions)."
+            },
+            q4: {
+                correct: 'C',
+                explanation: "Correct! Net National Product (NNP) = GNP - Depreciation (Capital Consumption Allowance). Subtracting depreciation converts any 'Gross' national measure into a 'Net' measure."
+            },
+            q5: {
+                correct: 'A',
+                explanation: "Correct! Formula: [(CPI_t - CPI_t-1) / CPI_t-1] × 100. Calculation: [(165 - 150) / 150] × 100 = (15 / 150) × 100 = 10%."
+            },
+            q6: {
+                correct: 'B',
+                explanation: "Correct! Labor Force = Employed (12m) + Unemployed (1m) = 13 million. Participation Rate = (Labor Force / Adult Pop) × 100 = (13 / 20) × 100 = 65%."
+            }
+        };
+
+        // Event listener for MCQ selections
+        document.querySelectorAll('.mcq-options input').forEach(input => {
+            input.addEventListener('change', function() {
+                const qId = this.name;
+                const selectedVal = this.value;
+                const questionBox = document.getElementById(qId);
+                const explanationDiv = questionBox.querySelector('.answer-explanation');
+                const data = mcqData[qId];
+
+                explanationDiv.style.display = 'block';
+
+                if (selectedVal === data.correct) {
+                    explanationDiv.className = 'answer-explanation correct';
+                    explanationDiv.innerHTML = '<strong>Correct!</strong> ' + data.explanation;
+                } else {
+                    explanationDiv.className = 'answer-explanation incorrect';
+                    explanationDiv.innerHTML = '<strong>Incorrect.</strong> Try again! ' + data.explanation;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
